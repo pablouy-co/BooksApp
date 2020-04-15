@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Reserva del libro {{ bookinstance.book }}</h1>
+    <form  role="form"  enctype="multipart/form-data" action="" method="POST" id="upload-image-form">   
+        {% csrf_token %}
+        
+        {% if object.status == 'a' %}
+            <h4>Confirma reserva del libro?</h4>
+
+            <button type="submit" formmethod="post">Reservar</button>
+
+        {% elif object.status == 'r' %}
+            <h4>Confirma cancelar reserva?</h4>
+
+            <button type="submit" formmethod="post">Cancelar</button>
+    
+        {% else %}
+            <h4>No se puede reservar un libro en prestamo</h4>
+        {% endif %}
+   
+    </form>
+{% endblock content %} 

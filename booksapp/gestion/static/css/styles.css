@@ -1,0 +1,30 @@
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+
+    background-color: whitesmoke;
+  }
+
+  h1 {
+    background-color: teal;
+    color: wheat;
+  }
+
+  #tabla1{
+    width: 750px;
+  }
+
+  #cabtab1{
+    background-color: #1E679A;
+    font-weight: bold;
+    color: #ffffff;
+    padding: 1 1 1 1px;
+  }
+  #cuerpotab1{
+    padding: 4 4 4 4px;
+    background-color: gainsboro;
+  }

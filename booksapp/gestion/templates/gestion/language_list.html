@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Listado de lenguajes</h1>
+    <ul>
+        {% for lenguage in object_list %}
+        <li>
+            {{ lenguage.name}}
+        </li>
+        {% endfor %}
+
+        <br><a href="{% url 'add-language' %}">Agregar lenguaje</a>
+    </ul>
+{% endblock content %} 

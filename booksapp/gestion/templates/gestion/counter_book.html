@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Confirme que desea el libro</h1>
+    <form  role="form"  enctype="multipart/form-data" action="" method="POST" id="upload-image-form">   
+        {% csrf_token %}        
+        
+        <button type="submit" formmethod="post">Confirmar</button>
+    </form>
+{% endblock content %} 

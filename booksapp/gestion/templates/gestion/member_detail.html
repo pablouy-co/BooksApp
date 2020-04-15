@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1> {{ member.first_name }} {{ member.last_name }}</h1>
+
+<div style="margin-left:20px;margin-top:20px">
+  <h3>ID del miembro: <strong>{{ member.memberID}}</strong></h3>
+  <h4>Telefono: <strong>{{ member.phone_num }}</strong></h4>
+  <h4>E-mail: <strong>{{ member.email }}</strong></h4>  
+  <br>
+  <a href="{% url 'delete-member' member.id %}">Eliminar</a>
+  <a href="{% url 'edit-member' member.id %}">Editar</a>
+</div>
+{% endblock %}

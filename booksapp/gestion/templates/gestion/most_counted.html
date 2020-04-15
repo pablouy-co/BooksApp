@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1> Libros mas solicitados</h1>
+
+<div style="margin-left:20px;margin-top:20px">
+
+  <ul>
+    <h4>Libros solicitados de 1 a 5 veces</h4>
+    {% for count in object_list %}
+        {% if count.counter > 0 and count.counter < 6 %}
+            <li>
+                <a href="{{ count.get_absolute_url }}">{{ count.title }}</a> {{count.author}}) [{{count.counter}}]
+            </li>
+        {% endif %}
+    {% endfor %}
+
+    <h4>Libros solicitados de 5 a 10 veces</h4>
+    {% for count in object_list %}
+        {% if count.counter > 5 and count.counter < 11 %}
+            <li>
+                <a href="{{ count.get_absolute_url }}">{{ count.title }}</a> ({{count.author}}) [{{count.counter}}]
+            </li>
+        {% endif %}
+    {% endfor %}
+
+    <h4>Libros solicitados mas de 10 veces</h4>
+    {% for count in object_list %}
+        {% if count.counter > 10 %}
+            <li>
+                <a href="{{ count.get_absolute_url }}">{{ count.title }}</a> ({{count.author}}) [{{count.counter}}]
+            </li>
+        {% endif %}
+    {% endfor %}
+
+  </ul>
+
+</div>
+{% endblock %}

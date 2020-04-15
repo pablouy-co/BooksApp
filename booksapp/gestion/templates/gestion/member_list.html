@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Listado de miembros</h1>
+
+    {% if object_list %}
+    <ul>
+
+      {% for member in object_list %}
+      <li>
+        <a href="{% url 'member-detail' member.id %}">{{ member.last_name }}, {{member.first_name}}</a>
+
+    </li>
+      {% endfor %}
+
+      <br><a href="{% url 'add-member' %}">Agregar miembro</a>
+    </ul>
+    {% else %}
+      <p>Todavia no hay miembros ingresados</p>
+    {% endif %}       
+{% endblock %}
+

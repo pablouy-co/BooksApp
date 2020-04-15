@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    <h1> {{ mentor.book.title }}</h1>
+
+
+    <form action="" method="post">{% csrf_token %}
+        <br><h4>Confirma darse de baja como referente de este libro?</h4>
+        <input type="submit" value="Confirmacion" />
+    </form>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Listado de autores</h1>
+
+    {% if object_list %}
+    <ul>
+
+      {% for author in object_list %}
+      <li>
+        <a href="{{ author.get_absolute_url }}">{{ author.last_name }}, {{author.first_name}}</a> <!--href indica una url al detalle del libro en particular-->
+      </li>
+      {% endfor %}
+
+          {% if user.get_username == 'usuario' %} 
+            <br><a href="{% url 'add-author' %}">Agregar autor</a>
+          {% endif %}
+    </ul>
+    {% else %}
+      <p>No hay autores ingresados.</p>
+    {% endif %}       
+{% endblock %}
+
+

@@ -1,0 +1,45 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1 align="center">BooksApp </h1>
+  <h2 align="center"><em>... libreria online ...</em></h2><br>
+
+
+  <br>
+  <form action="{% url 'books' %}" method="get">
+    <input name="q" type="text" size= "45" placeholder="  ..............busque su libro por autor o titulo.............">
+    <button>Buscar</button><br><br>
+  </form>
+  <br>
+  <h4>Contadores de la libreria:</h4>
+  <ul>
+    <li><strong>Libros:</strong> {{ num_books }}</li>
+    <li><strong>Copias:</strong> {{ num_instances }}</li>
+    <li><strong>Copias disponibles:</strong> {{ num_instances_available }}</li>
+    <li><strong>Autores:</strong> {{ num_authors }}</li>
+  </ul>
+
+  {% load static %}
+  <p><table width="200" border="0" align="center">
+    <tbody>
+      <tr>
+        <th scope="col"><table width="517" border="0">
+          <tbody>
+              <tr>
+                <th width="146" scope="col">TOP 1</th>
+                <th width="146" scope="col">TOP 2</th>
+                <th width="146" scope="col">TOP 3</th>
+              </tr>
+              <tr>
+                <td><p><img src="{% static 'yo_robot.jpg' %}" alt ="top 1" style="width: 137px;height: 218px;" /></p>
+                <p><h4>Yo Robot - Isaac Asimov</h4></p></td>
+                <td><p><img src="{% static 'el_marciano.jpg' %}" alt ="top 2" style="width: 137px;height: 218px;" /></p>
+                <p><h4>El Marciano - Andy Weir</h4></p></td>
+                <td><p><img  src="{% static 'homo_deus.jpg' %}" alt ="top 3" style="width: 137px;height: 218px;" /></p>
+                <p><h4>Homo Deus - Yuval Noah Harari</h4></p></td>
+
+            </tr>
+			</tbody>
+</table></p>
+
+{% endblock %}

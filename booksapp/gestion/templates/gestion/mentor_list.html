@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Listado de referentes</h1>
+
+    {% if object_list %}
+    <ul>
+
+      {% for mentor in object_list %}
+      <p>Libro: <a href="{{ mentor.book.get_absolute_url }}"> {{ mentor.book.title }}</a>
+        ({{mentor.book.author}})</p>
+        <p>Usuario referente:  {{ mentor.mentor }}
+            (<a href="mailto:{{mentor.contact_email}}">Enviar correo</a>)
+            (<a href="{% url 'delete-mentor' mentor.id %}">Darse de baja</a>)   
+        </p>
+        <br>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>No hay referentes todavia</p>
+    {% endif %}       
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1> Elija libro para ser referente de consultas </h1>
+    <form  role="form"  enctype="multipart/form-data" action="" method="POST" id="upload-image-form">   
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" formmethod="post">Ser referente</button>
+    </form>
+{% endblock content %} 

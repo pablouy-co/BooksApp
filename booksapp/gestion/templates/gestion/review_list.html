@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Reseñas</h1>
+
+{% if object_list %}
+<div id=tabla1>
+    {% for review in object_list %}
+    <div>
+        <h4><a href="{{ review.book.get_absolute_url }}">{{ review.book.title }}</a> ({{review.book.author}})</h4>
+        <h6>Calificado {{ review.rating }} de 5 por {{ review.user_name }}</h6>
+        <h6>Publicado el {{  review.pub_date }}</h6>
+        <p><i>{{ review.comment }}</i></p><br>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No hay reseñas todavia</p>
+{% endif %}
+
+{% endblock %}

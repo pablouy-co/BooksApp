@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1> Reseña de este libro </h1>
+
+<div style="margin-left:20px;margin-top:20px">
+
+
+  <h4>Reseñas</h4>
+
+  <dl>
+    {% for c in review_set.all %}
+
+      <dd>{{c.comment}}</dd>
+    {% endfor %}
+  </dl>
+
+{% endblock %}

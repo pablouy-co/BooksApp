@@ -1,0 +1,70 @@
+{% extends "base_generic.html" %} <!--hereda de base_generic-->
+
+{% block content %}
+  <h1>{{ book.title }}</h1>
+
+  {% if book.image %}
+    <img src="{{ book.image.url }}" alt="{{ book.title }} "  style="width: 115px;height: 175px;float: left;"
+  {% endif %}
+
+ 
+    <p><strong>Autor:</strong> <a href="{{ book.author.get_absolute_url }}">{{ book.author }}</a></p>
+    <p style="width: 1000px;"><strong>Resumen:</strong> {{ book.summary }}</p>
+    <h6><strong>ISBN:</strong> {{ book.isbn }}</h6>
+    <h6>
+      {% if book.average_rating != 0 %}<strong>Calificacion:</strong> {{ book.average_rating }} de 5 {% endif %}
+      <a href="{% url 'add-review' book.pk %}">Nueva reseña</a>
+    </h6>
+    <h6><strong>Lenguaje:</strong> {{ book.language }}</h6>
+    <h6><strong>Genero:</strong> {% for genre in book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</h6><br>
+
+  <div style="margin-left:20px;margin-top:20px">
+   
+    {% if book.bookinstance_set.all %}
+            <u><h4>Copias:</h4></u>
+        {% for copy in book.bookinstance_set.all %} <!--book.bookinstance_set.all es un método creado por Django que devuelve el 
+                                                        conjunto de registros de BookInstance asociado con un Book en particular. Es una busqueda reversa 
+                                                        debido a que se declaró un ForeigKey (uno a muchos), para buscar desde el lado "muchos" a "uno"-->
+          <hr>
+          <p class="{% if copy.status == 'a' %}text-success{% else %}text-danger{% endif %}">{{ copy.get_status_display }}</p>
+            {% if copy.status != 'a' %}<p><strong>Fecha de devolucion:</strong> {{copy.due_back}}</p>{% endif %}
+          <p><strong>Editorial:</strong> {{copy.imprint}}</p>
+
+            {% if user.get_username == 'usuario' %}
+              <a href="{% url 'edit-book' book.id %}">Editar</a>
+              <a href="{% url 'delete-book' copy.id %}">Borrar</a>
+              <a href="{% url 'loan-book' copy.id %}">Prestar/Devolver</a>
+
+            {% else %}
+              <a href="{% url 'reserve-book' copy.id %}">Reservar</a>
+            {% endif %}
+          
+         
+        {% endfor %}  
+    
+    {% else %}
+        <h5>La biblioteca no posee una copia de este libro</h5>
+        <h5>Te gustaría que adquiera una copia?</h5>
+        <a href="{% url 'counter-book' book.id %}">Si</a> 
+        
+    {% endif %}
+
+    <br><br>
+    <u><h4>Reseñas</h4></u><br>
+    {% if book.review_set.all %}
+    <div id=tabla1>
+      {% for rv in book.review_set.all %}
+        <div>
+            <h6><strong>Calificado {{ rv.rating }} de 5 por {{ rv.user_name }}</strong></h6>
+            <h6>Publicado el {{  rv.pub_date }}</h6>
+            <p><i>{{ rv.comment }}</i></p><br>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No hay reseñas todavia</p>
+    {% endif %}
+
+{% endblock %}
+
+

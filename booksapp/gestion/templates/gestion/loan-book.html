@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Prestamo del libro {{ bookinstance.book }}</h1>
+    <form  role="form"  enctype="multipart/form-data" action="" method="POST" id="upload-image-form">   
+        {% csrf_token %}
+
+        {% if object.status == 'a' %}
+            <h4>El libro está disponible, seleccione el prestatario</h4>   
+                {{ form.borrower }}
+            <button type="submit" formmethod="post">Prestar</button>
+            <br><h5>Informe que la fecha de devolucion será el {{ object.due_back }}</h5>
+
+        {% elif object.status == 'o' %}
+            <h4>El usuario {{ object.borrower}} está devolviendo el libro?</h4>
+            <button type="submit" formmethod="post">Devuelve</button>
+    
+        {% else %}
+            <h4>El libro está reservado por {{ object.borrower }}</h4>
+            <h4>Confirma que lo retira este usuario?</h4>
+                {{ form.borrower }}
+            <button type="submit" formmethod="post">Prestar</button>
+            <br><h5>Informe que la fecha de devolucion será el {{ due_back }}</h5>
+        {% endif %}
+   
+    </form>
+{% endblock content %} 

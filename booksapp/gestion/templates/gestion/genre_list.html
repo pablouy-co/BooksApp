@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Listado de generos</h1>
+    <ul>
+        {% for genre in object_list %}
+        <li>
+            {{ genre.name}}
+        </li>
+        {% endfor %}
+   
+    <br><a href="{% url 'add-genre' %}">Agregar genero</a>
+    </ul>   
+
+{% endblock content %} 
+

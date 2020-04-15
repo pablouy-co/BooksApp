@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    <h1> {{ object.book }} de {{ object.book.author.first_name }} {{ object.book.author.last_name }}</h1>
+
+{% if object.book.image %}
+    <img src="{{ object.book.image.url }}" alt="{{ book.title }} "  style="width: 115px;height: 175px;">
+{% endif %}
+
+    <form action="" method="post">{% csrf_token %}
+        <br><h4>Por favor, confirme borrar la copia de la editorial {{ object.imprint }} </h4><br>
+        <input type="submit" value="BORRAR" />
+    </form>
+
+{% endblock %}

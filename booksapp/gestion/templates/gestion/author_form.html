@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Ingreso de nuevo autor</h1>
+    <form  role="form"  enctype="multipart/form-data" action="" method="POST" id="upload-image-form">   
+        {% csrf_token %}   
+        {{ form.as_p }}       
+        
+        <button type="submit" formmethod="post">Enviar</button>
+    </form>
+{% endblock content %} 
